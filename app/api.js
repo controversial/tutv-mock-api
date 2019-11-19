@@ -1,5 +1,5 @@
 const express = require('express');
-const { equipment } = require('./equipment-list');
+const { equipment } = require('./data/equipment-list');
 
 const api = express.Router({ strict: true });
 
