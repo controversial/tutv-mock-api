@@ -1,10 +1,18 @@
 const express = require('express');
 const { equipment } = require('./data/equipment-list');
+const { userRequests } = require('./data/requests');
 
 const api = express.Router({ strict: true });
 
 api.get('/', (req, res) => { res.json({ status: 'ok' }); });
 
+
+/**
+ * General routes
+ *
+ * These routes do not require authenitcation and return general public information about the TUTV
+ * catalog and other public, non-user-specific info
+ */
 
 // Returns a summary of all equipment in the TUTV inventory
 api.get('/equipment/', (req, res) => {
@@ -30,5 +38,26 @@ api.get('/equipment/search', (req, res) => {
 
   return res.json(items);
 });
+
+
+/**
+ * User routes
+ *
+ * These routes return information specific to the authenticated user.
+ * Admin priviliges are not required for these routes.
+ */
+
+// Returns a summary of all user requests current and past
+api.get('/user/requests/overview/', (req, res) => {
+  const overview = userRequests.map(({ name, id, start_date, end_date, equipment }) => ({
+    name,
+    id,
+    start_date,
+    end_date,
+    equipment_count: equipment.length,
+  }));
+  return res.json(overview);
+});
+
 
 module.exports = api;
