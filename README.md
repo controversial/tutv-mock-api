@@ -10,9 +10,8 @@ during front-end development.
 
 ## Listing equipment: `/api/v1/equipment/`
 Lists all equipment in the inventory regardless of availability at a given time. Does not require authentication.
-</br></br>
 
-## Searching for equipment: `/api/v1/equipment/search`
+## <br/>Searching for equipment: `/api/v1/equipment/search`
 Lists a subset of the equipment catalog, filtered by one or more search parameters. Does not require authentication. The search parameters accepted are as follows:
 
 | parameter         | example usage                | description                                                                         |
@@ -53,6 +52,9 @@ X-Powered-By: Express
     ]
 }
 ```
+
+## <br/>Fetching user information: `/api/v1/user/`
+Returns information about the authenticated user.
 
 
 # 2. Authentication
