@@ -52,3 +52,23 @@ X-Powered-By: Express
         }
     ]
 }
+```
+
+
+# 2. Authentication
+Some routes in the API require authentication. To make developing the front-end alongside this API easier, this mock API will return the correct data for all requests. However, requests to protected endpoints that are made without the proper credentials will return status `403` alongside the data requested, and add an error message to the response. This is designed to remind consumers of this API that the real API will require authentication, while avoiding slowing development.
+
+To make an authenticated request, include an `Authorization` header with a valid [JSON Web Token](https://jwt.io/) (JWT).
+
+```http
+Accept: */*
+Cache-Control: no-cache
+Connection: keep-alive
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbl91c2VyIiwibmFtZSI6IkFkbWluIFVzZXIiLCJpYXQiOjE1NzYwMTA5Mzh9.2lqotAo24DOySIP8U0dNaxm_jB_-ATQQ2CwD6ZgNLzw
+```
+
+In the real app, JSON web tokens will be issued securely. However, for the purpose of this mock API, JSON web tokens can be obtained by the following two token endpoints:
+- `/api/v1/token_obtain/user/` will return a JWT representing a normal user
+- `/api/v1/token_obtain/admin/` will return a JWT for an admin user.
+
+The JSON web tokens in this endpoint will allow use of this mock API's authenticated routes without encountering the `403 Forbidden` warning, and will last for 24 hours. After this time window, request a new token from the same endpoint in order to keep making authenticated requests.
