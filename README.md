@@ -6,12 +6,12 @@ during front-end development.
 <br/><br/>
 
 
-# 1. Endpoints
+## 1. Endpoints
 
-## Listing equipment: `/api/v1/equipment/`
+### Listing equipment: `/api/v1/equipment/`
 Lists all equipment in the inventory regardless of availability at a given time. Does not require authentication.
 
-## <br/>Searching for equipment: `/api/v1/equipment/search`
+### Searching for equipment: `/api/v1/equipment/search`
 Lists a subset of the equipment catalog, filtered by one or more search parameters. Does not require authentication. The search parameters accepted are as follows:
 
 | parameter         | example usage                | description                                                                         |
@@ -21,11 +21,11 @@ Lists a subset of the equipment catalog, filtered by one or more search paramete
 | category          | `?category=microphone`       | Restricts the search results to items with a certain category ID                    |
 
 
-#### Exmample request:
+##### Example request:
 ```http
 GET /api/v1/equipment/search?q=XLR&startDate=123&endDate=456&category=microphone
 ```
-#### Example response:
+##### Example response:
 ```http
 HTTP/1.1 200 OK
 Connection: keep-alive
@@ -53,18 +53,18 @@ X-Powered-By: Express
 }
 ```
 
-## <br/>Fetching user information: `/api/v1/user/`
+### Fetching user information: `/api/v1/user/`
 Returns information about the authenticated user.
 
 
-## <br/> Listing user requests: `/api/v1/user/requests/overview/`
+### Listing user requests: `/api/v1/user/requests/overview/`
 Returns a summary of the authenticated user’s active requests.
 
-#### Example request:
+##### Example request:
 ```http
 GET /api/v1/user/requests/overview
 ```
-#### Example respoonse:
+##### Example respoonse:
 ```http
 HTTP/1.1 200 OK
 Connection: keep-alive
@@ -98,12 +98,12 @@ X-Powered-By: Express
 }
 ```
 
-## <br/> Fetching specific user requests: `/api/v1/user/requests/[id]`
+### Fetching specific user requests: `/api/v1/user/requests/[id]`
 Returns more detailed information about a specific user request.
 
 
 
-# <br/><br/>2. Authentication
+## 2. Authentication
 Some routes in the API require authentication. To make developing the front-end alongside this API easier, this mock API will return the correct data for all requests. However, requests to protected endpoints that are made without the proper credentials will return status `403` alongside the data requested, and add an error message to the response. This is designed to remind consumers of this API that the real API will require authentication, while avoiding slowing development.
 
 To make an authenticated request, include an `Authorization` header with a valid [JSON Web Token](https://jwt.io/) (JWT).
