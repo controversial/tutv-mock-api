@@ -1,4 +1,5 @@
 const express = require('express');
+const requireAuth = require('./auth.js');
 const { equipment } = require('./data/equipment-list');
 const { userRequests } = require('./data/requests');
 
@@ -54,9 +55,17 @@ api.get('/equipment/search', (req, res) => {
  */
 
 // Returns info about the authenticated user
- api.get('/user/', (req, res) => {
-  res.json({ data: { username: 'test' }, error: null });
- });
+api.get('/user/', requireAuth(), (req, res) => {
+  res
+    .status(req.authPassed ? 200 : 403)
+    .json({
+      data: {
+        username: req.userInfo.sub,
+        name: req.userInfo.name
+      },
+      error: req.errorMessage
+    });
+});
 
 // Returns a summary of all user requests current and past
 api.get('/user/requests/overview/', (req, res) => {
