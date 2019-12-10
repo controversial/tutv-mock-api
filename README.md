@@ -57,7 +57,48 @@ X-Powered-By: Express
 Returns information about the authenticated user.
 
 
-# 2. Authentication
+## <br/> Listing user requests: `/api/v1/user/requests/overview/`
+Returns a summary of the authenticated user’s active requests.
+
+#### Example request:
+```http
+GET /api/v1/user/requests/overview
+```
+#### Example respoonse:
+```http
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Date: Tue, 10 Dec 2019 22:43:40 GMT
+X-Powered-By: Express
+
+{
+    "data": [
+        {
+            "start_date": "2019-12-14T19:08:04.186Z",
+            "end_date": "2019-12-18T19:08:04.186Z",
+            "name": "A Lover's Quarrel",
+            "id": "t5ljqk",
+            "equipment_count": 2
+        },
+        {
+            "start_date": "2019-12-08T19:08:04.186Z",
+            "end_date": "2019-12-11T19:08:04.186Z",
+            "name": "Athena Project",
+            "id": "s9eq6z",
+            "equipment_count": 3
+        },
+        {
+            "start_date": "2019-10-14T19:08:04.186Z",
+            "name": "Bosfeed",
+            "id": "lnj1e7",
+            "equipment_count": 2
+        }
+    ]
+}
+```
+
+# <br/><br/>2. Authentication
 Some routes in the API require authentication. To make developing the front-end alongside this API easier, this mock API will return the correct data for all requests. However, requests to protected endpoints that are made without the proper credentials will return status `403` alongside the data requested, and add an error message to the response. This is designed to remind consumers of this API that the real API will require authentication, while avoiding slowing development.
 
 To make an authenticated request, include an `Authorization` header with a valid [JSON Web Token](https://jwt.io/) (JWT).
