@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const secret = 'secret';
 
-module.exports = () => (req, res, next) => {
+module.exports = (requiredRole) => (req, res, next) => {
   const { authorization } = req.headers;
 
   req.userInfo = null;
@@ -13,6 +13,13 @@ module.exports = () => (req, res, next) => {
     try {
       req.userInfo = jwt.verify(token, secret);
       req.authPassed = true;
+      // A role is required that the user does not have
+      if ((requiredRole === 'admin' && req.userInfo.sub !== 'admin_user')
+       || (requiredRole === 'user' && req.userInfo.sub !== 'test_user')
+       || (requiredRole && !['admin', 'user'].includes(requiredRole))) {
+        req.authPassed = false;
+        req.errorMessage = `User does not have the required role of '${requiredRole}'`;
+      }
     } catch (e) {
       req.authPassed=false;
       req.errorMessage=e.message;
