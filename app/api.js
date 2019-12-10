@@ -27,7 +27,9 @@ api.get('/equipment/search', (req, res) => {
 
   // Filtering by date - change available_count
   if (startDate || endDate) {
-    items = items.map((item) => ({ ...item, available_count: Math.round(Math.random() * item.total_count) }));
+    items = items
+      .map((item) => ({ ...item, available_count: Math.round(Math.random() * item.total_count) }))
+      .filter(({ available_count }) => available_count > 0);
   }
   // Text search (search category and name for a match)
   if (q) {
