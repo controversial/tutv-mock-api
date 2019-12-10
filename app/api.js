@@ -62,5 +62,8 @@ api.get('/user/requests/overview/', (req, res) => {
   return res.json(overview);
 });
 
+api.get('/user/requests/:id/', (req, res) => {
+  return res.json({ id: req.params.id });
+});
 
 module.exports = api;
