@@ -23,19 +23,22 @@ api.get('/equipment/', (req, res) => {
 // by date)
 api.get('/equipment/search', (req, res) => {
   let items = equipment.map((item) => ({ ...item, available_count: item.total_count }));
-  const { q, startDate, endDate } = req.query;
+  const { q, startDate, endDate, category } = req.query;
 
   // Filtering by date - change available_count
-  if (startDate || endDate) {
+  if (startDate || endDate) { // ?startDate=anything&endDate=anything
     items = items
       .map((item) => ({ ...item, available_count: Math.round(Math.random() * item.total_count) }))
       .filter(({ available_count }) => available_count > 0);
   }
   // Text search (search category and name for a match)
-  if (q) {
+  if (q) { // ?q=camera
     items = items.filter(
       ({ name: n, category: c }) => (n + c.name + c.display_name).toLowerCase().includes(q.toLowerCase())
     );
+  }
+  if (category) { // ?category=microphone
+    items = items.filter(({ category: c }) => c.slug === category);
   }
 
   return res.json({ data: items, error: null });
