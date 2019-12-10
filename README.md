@@ -1,7 +1,7 @@
 # tutv-mock-api
-Mock API for use in development of https://github.com/jumbocode/tutv
+Mock API for use in development of [TUTV](https://github.com/jumbocode/tutv).
 
-This is a nonfunctional "dummy" API that will provide "fake" API responses appropriate for use
+This is a nonfunctional dummy API that will provide "fake" API responses appropriate for use
 during front-end development.
 <br/><br/>
 
