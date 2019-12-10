@@ -34,7 +34,7 @@ const processed = uniqueTypeNames.map((typeName) => {
     },
     // How many of the equipment items in the db have this type?
     total_count: typeNames.filter(t => t === typeName).length,
-    image: '',
+    image: null,
   };
 });
 
