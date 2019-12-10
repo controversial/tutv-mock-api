@@ -5,6 +5,14 @@ This is a nonfunctional dummy API that will provide "fake" API responses appropr
 during front-end development.
 <br/><br/>
 
+### Table of Contents
+1. [Endpoints](#1-endpoints)
+    - [Listing equipment](#listing-equipment-apiv1equipment)
+    - [Searching for equipment](#searching-for-equipment-apiv1equipmentsearch)
+    - [Fetching user information](#fetching-user-information-apiv1user)
+    - [Listing user requests](#listing-user-requests-apiv1userrequestsoverview)
+    - [Fetching specific user requests](#fetching-specific-user-requests-apiv1userrequestsid)
+2. [Authentication](#2-authentication)
 
 ## 1. Endpoints
 
