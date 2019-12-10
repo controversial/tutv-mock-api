@@ -16,7 +16,7 @@ api.get('/', (req, res) => { res.json({ status: 'ok' }); });
 
 // Returns a summary of all equipment in the TUTV inventory
 api.get('/equipment/', (req, res) => {
-  res.json(equipment);
+  res.json({ data: equipment, error: null });
 });
 
 // Returns a filtered set of all equipment in the TUTV inventory (search for a string and/or filter
@@ -38,7 +38,7 @@ api.get('/equipment/search', (req, res) => {
     );
   }
 
-  return res.json(items);
+  return res.json({ data: items, error: null });
 });
 
 
@@ -52,7 +52,7 @@ api.get('/equipment/search', (req, res) => {
 
 // Returns info about the authenticated user
  api.get('/user/', (req, res) => {
-  res.json({ username: 'test' });
+  res.json({ data: { username: 'test' }, error: null });
  });
 
 // Returns a summary of all user requests current and past
@@ -64,12 +64,12 @@ api.get('/user/requests/overview/', (req, res) => {
     end_date,
     equipment_count: equipment.length,
   }));
-  return res.json(overview);
+  return res.json({ data: overview, error: null });
 });
 
 // Returns info about a specific item request
 api.get('/user/requests/:id/', (req, res) => {
-  return res.json({ id: req.params.id });
+  return res.json({ data: { id: req.params.id }, error: null });
 });
 
 module.exports = api;
