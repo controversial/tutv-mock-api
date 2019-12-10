@@ -10,3 +10,14 @@ Inside this folder, run `npm install`. Then, run `npm start`. The server will li
 
 TODO: Routes that require authentication will return 'authenticated: false' if no authenitcation is
 provided, but will not fail. This will allow for smoother development
+
+
+<br/>
+<br/>
+
+
+# 1. Endpoints
+
+## Listing equipment: `/api/v1/equipment/`
+Lists all equipment in the inventory regardless of availability at a given time. Does not require authentication.
+</br></br>
