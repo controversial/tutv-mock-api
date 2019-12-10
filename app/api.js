@@ -50,6 +50,11 @@ api.get('/equipment/search', (req, res) => {
  * Admin priviliges are not required for these routes.
  */
 
+// Returns info about the authenticated user
+ api.get('/user/', (req, res) => {
+  res.json({ username: 'test' });
+ });
+
 // Returns a summary of all user requests current and past
 api.get('/user/requests/overview/', (req, res) => {
   const overview = userRequests.map(({ name, id, start_date, end_date, equipment }) => ({
@@ -62,6 +67,7 @@ api.get('/user/requests/overview/', (req, res) => {
   return res.json(overview);
 });
 
+// Returns info about a specific item request
 api.get('/user/requests/:id/', (req, res) => {
   return res.json({ id: req.params.id });
 });
