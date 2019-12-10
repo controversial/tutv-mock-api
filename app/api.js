@@ -40,6 +40,7 @@ api.get('/equipment/search', (req, res) => {
 });
 
 
+
 /**
  * User routes
  *
