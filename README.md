@@ -122,11 +122,11 @@ To make an authenticated request, include an `Authorization` header with a valid
 Accept: */*
 Cache-Control: no-cache
 Connection: keep-alive
-Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbl91c2VyIiwibmFtZSI6IkFkbWluIFVzZXIiLCJpYXQiOjE1NzYwMTA5Mzh9.2lqotAo24DOySIP8U0dNaxm_jB_-ATQQ2CwD6ZgNLzw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbl91c2VyIiwibmFtZSI6IkFkbWluIFVzZXIiLCJpYXQiOjE1NzYwMTA5Mzh9.2lqotAo24DOySIP8U0dNaxm_jB_-ATQQ2CwD6ZgNLzw
 ```
 
 In the real app, JSON web tokens will be issued securely. However, for the purpose of this mock API, JSON web tokens can be obtained by the following two token endpoints:
 - `/api/v1/token_obtain/user/` will return a JWT representing a normal user
 - `/api/v1/token_obtain/admin/` will return a JWT for an admin user.
 
-The JSON web tokens in this endpoint will allow use of this mock API's authenticated routes without encountering the `403 Forbidden` warning, and will last for 24 hours. After this time window, request a new token from the same endpoint in order to keep making authenticated requests.
+The JSON web tokens that this endpoint returns will allow access to authenticated routes while suppressing the `403 Forbidden` warning. The tokens are valid for 24 hours, after which clients should request a new token for future requests.
