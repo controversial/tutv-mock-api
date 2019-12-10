@@ -68,7 +68,7 @@ api.get('/user/', requireAuth(), (req, res) => {
 });
 
 // Returns a summary of all user requests current and past
-api.get('/user/requests/overview/', (req, res) => {
+api.get('/user/requests/overview/', requireAuth('user'), (req, res) => {
   const overview = userRequests.map(({ name, id, start_date, end_date, equipment }) => ({
     name,
     id,
@@ -76,12 +76,23 @@ api.get('/user/requests/overview/', (req, res) => {
     end_date,
     equipment_count: equipment.length,
   }));
-  return res.json({ data: overview, error: null });
+
+  return res
+    .status(req.authPassed ? 200 : 403)
+    .json({
+      data: overview,
+      error: req.errorMessage,
+    });
 });
 
 // Returns info about a specific item request
-api.get('/user/requests/:id/', (req, res) => {
-  return res.json({ data: { id: req.params.id }, error: null });
+api.get('/user/requests/:id/', requireAuth('user'), (req, res) => {
+  return res
+    .status(req.authPassed ? 200 : 403)
+    .json({
+      data: { id: req.params.id },
+      error: req.errorMessage,
+    });
 });
 
 module.exports = api;
