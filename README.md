@@ -98,6 +98,11 @@ X-Powered-By: Express
 }
 ```
 
+## <br/> Fetching specific user requests: `/api/v1/user/requests/[id]`
+Returns more detailed information about a specific user request.
+
+
+
 # <br/><br/>2. Authentication
 Some routes in the API require authentication. To make developing the front-end alongside this API easier, this mock API will return the correct data for all requests. However, requests to protected endpoints that are made without the proper credentials will return status `403` alongside the data requested, and add an error message to the response. This is designed to remind consumers of this API that the real API will require authentication, while avoiding slowing development.
 
