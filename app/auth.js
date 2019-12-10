@@ -8,7 +8,7 @@ module.exports = (requiredRole) => (req, res, next) => {
   req.authPassed = false;
   req.errorMessage = null;
 
-  if (authorization.startsWith('Bearer ')) {
+  if (authorization && authorization.startsWith('Bearer ')) {
     token = authorization.substring(7);
     try {
       req.userInfo = jwt.verify(token, secret);
@@ -25,7 +25,7 @@ module.exports = (requiredRole) => (req, res, next) => {
       req.errorMessage=e.message;
     }
   } else {
-    req.errorMessage = 'Malformed Authorization header';
+    req.errorMessage = 'Missing or malformed Authorization header';
   }
 
   next();
