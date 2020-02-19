@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const apiRoutes = require('./api');
 
 // App config
 app.enable('strict routing');
 app.set('json spaces', 2);
+app.use(cors());
 
 // API routes
 app.use('/api/v1', apiRoutes);
